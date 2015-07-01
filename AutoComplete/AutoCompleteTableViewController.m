@@ -13,6 +13,7 @@
 {
     NSMutableArray* searchResults;
     dispatch_queue_t queue;
+    AutoCompleteService* autocompleteSevice;
 }
 
 @end
@@ -64,7 +65,8 @@
     NSString* searchString = searchText;
     if ([searchString length] > 3)
     {
-        [AutoCompleteService autocompleteWithTerm:searchString withDelegate:self];
+        autocompleteSevice = [AutoCompleteService autocompleteWithTerm:searchString withDelegate:self];
+        [autocompleteSevice search];
     }
 
 }

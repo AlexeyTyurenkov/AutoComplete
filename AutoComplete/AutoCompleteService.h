@@ -18,6 +18,8 @@
 
 - (instancetype)initWithSearchTerm:(NSString*)searchTerm withDelegate:(id<AutocompletionDelegate>)delegete;
 
+- (void) search;
+
 + (instancetype)autocompleteWithTerm:(NSString*)searchTerm withDelegate:(id<AutocompletionDelegate>)delegete;
 
 @end

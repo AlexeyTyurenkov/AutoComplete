@@ -46,6 +46,10 @@
     [connection start];
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    mutableData = [NSMutableData data];
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
