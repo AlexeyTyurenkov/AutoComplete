@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF61770D1B441F1500880EF8 /* AutoCompleteItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF61770C1B441F1500880EF8 /* AutoCompleteItemModel.m */; };
 		C61398B71B43E8BF00A6CB2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C61398B61B43E8BF00A6CB2A /* main.m */; };
 		C61398BA1B43E8BF00A6CB2A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C61398B91B43E8BF00A6CB2A /* AppDelegate.m */; };
 		C61398C01B43E8BF00A6CB2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C61398BE1B43E8BF00A6CB2A /* Main.storyboard */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF61770B1B441F1500880EF8 /* AutoCompleteItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCompleteItemModel.h; sourceTree = "<group>"; };
+		BF61770C1B441F1500880EF8 /* AutoCompleteItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCompleteItemModel.m; sourceTree = "<group>"; };
 		C61398B11B43E8BF00A6CB2A /* AutoComplete.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoComplete.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61398B51B43E8BF00A6CB2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C61398B61B43E8BF00A6CB2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 				C61398B41B43E8BF00A6CB2A /* Supporting Files */,
 				C61398DA1B43EED300A6CB2A /* AutoCompleteTableViewController.h */,
 				C61398DB1B43EED300A6CB2A /* AutoCompleteTableViewController.m */,
+				BF61770B1B441F1500880EF8 /* AutoCompleteItemModel.h */,
+				BF61770C1B441F1500880EF8 /* AutoCompleteItemModel.m */,
 			);
 			path = AutoComplete;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF61770D1B441F1500880EF8 /* AutoCompleteItemModel.m in Sources */,
 				C61398BA1B43E8BF00A6CB2A /* AppDelegate.m in Sources */,
 				C61398B71B43E8BF00A6CB2A /* main.m in Sources */,
 				C61398DC1B43EED300A6CB2A /* AutoCompleteTableViewController.m in Sources */,
@@ -414,6 +420,7 @@
 				C61398D61B43E8C000A6CB2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C61398D71B43E8C000A6CB2A /* Build configuration list for PBXNativeTarget "AutoCompleteTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +429,7 @@
 				C61398D91B43E8C000A6CB2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

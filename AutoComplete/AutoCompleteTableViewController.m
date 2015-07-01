@@ -72,11 +72,13 @@
         if ([searchString length] && !error)
         {
             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:resultData options:kNilOptions error:&error];
-            NSDictionary* items = [dictionary objectForKey:@"items"];
+            NSArray* items = [dictionary objectForKey:@"items"];
             NSMutableArray* result = [[NSMutableArray  alloc] initWithCapacity:10];
             for (int i = 0; i < 10; i++)
             {
-                [result addObject:[NSString stringWithFormat:@"%@-%d",searchString,i]];
+                AutoCompleteItemModel *receivedItem = [[AutoCompleteItemModel alloc] initItemFromArrayObj:[items objectAtIndex:i]];
+                
+                [result addObject:receivedItem];
             }
             [searchResults addObjectsFromArray:result];
             NSLog(@"%@",items);
