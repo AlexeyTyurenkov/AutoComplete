@@ -7,6 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface AutoCompleteTableViewController : UITableViewController <UISearchBarDelegate>
+#import "AutoCompleteService.h"
+@interface AutoCompleteTableViewController : UITableViewController <UISearchBarDelegate, AutocompletionDelegate>
 @end

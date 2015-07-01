@@ -7,6 +7,7 @@
 //
 
 #import "AutoCompleteTableViewController.h"
+#import "AutoCompleteService.h"
 
 @interface AutoCompleteTableViewController ()
 {
@@ -54,40 +55,34 @@
         cell = [[UITableViewCell alloc] init];
 
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %d, data: %@", indexPath.row, [searchResults objectAtIndex:indexPath.row]];
+    cell.textLabel.text = [NSString stringWithFormat:@"Row %ld, data: %@", indexPath.row, [searchResults objectAtIndex:indexPath.row]];
     return cell;
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     NSString* searchString = searchText;
-    __weak UITableView* weakTableView = self.tableView;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        //[NSThread sleepForTimeInterval:arc4random()/UINT32_MAX + 2.0];
-        NSError* error = nil;
-        NSURL* url = [NSURL URLWithString:@"https://www.googleapis.com/customsearch/v1?q=ree&key=AIzaSyBThVMwGPGomoRCfOtAZ3rUZDWc4aQWv5Q&cx=012810251358574654648:om4qr5mdfhs"];
-        NSData* resultData = [NSData dataWithContentsOfURL:url options:NSDataReadingMappedIfSafe error:&error];
-        [searchResults removeAllObjects];
-        if ([searchString length] && !error)
-        {
-            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:resultData options:kNilOptions error:&error];
-            NSDictionary* items = [dictionary objectForKey:@"items"];
-            NSMutableArray* result = [[NSMutableArray  alloc] initWithCapacity:10];
-            for (int i = 0; i < 10; i++)
-            {
-                [result addObject:[NSString stringWithFormat:@"%@-%d",searchString,i]];
-            }
-            [searchResults addObjectsFromArray:result];
-            NSLog(@"%@",items);
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakTableView reloadData];
-        });
-
-    });
+    if ([searchString length] > 3)
+    {
+        [AutoCompleteService autocompleteWithTerm:searchString withDelegate:self];
+    }
 
 }
+
+- (void)autocompleteForTerm:(NSString *)searchTerm WithData:(NSArray *)data
+{
+    [searchResults removeAllObjects];
+    NSMutableArray* result = [[NSMutableArray  alloc] initWithCapacity:10];
+    for (int i = 0; i < 10; i++)
+    {
+        [result addObject:[NSString stringWithFormat:@"%@-%d",searchTerm,i]];
+    }
+    [searchResults addObjectsFromArray:result];
+    NSLog(@"%@",data);
+    [self.tableView reloadData];
+    
+}
+
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
