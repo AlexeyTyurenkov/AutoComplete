@@ -8,6 +8,7 @@
 
 #import "AutoCompleteTableViewController.h"
 #import "AutoCompleteService.h"
+#import "AutoCompleteItemModel.h"
 
 @interface AutoCompleteTableViewController ()
 {
@@ -56,7 +57,8 @@
         cell = [[UITableViewCell alloc] init];
 
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Row %ld, data: %@", indexPath.row, [searchResults objectAtIndex:indexPath.row]];
+    AutoCompleteItemModel* model = [searchResults objectAtIndex:indexPath.row];
+    cell.textLabel.text = model.title;
     return cell;
 }
 
@@ -68,19 +70,18 @@
         autocompleteSevice = [AutoCompleteService autocompleteWithTerm:searchString withDelegate:self];
         [autocompleteSevice search];
     }
-
 }
 
 - (void)autocompleteForTerm:(NSString *)searchTerm WithData:(NSArray *)data
 {
     [searchResults removeAllObjects];
     NSMutableArray* result = [[NSMutableArray  alloc] initWithCapacity:10];
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; (i < 10) && (i < [data count]); i++)
     {
-        [result addObject:[NSString stringWithFormat:@"%@-%d",searchTerm,i]];
+
+        [result addObject:data[i]];
     }
     [searchResults addObjectsFromArray:result];
-    NSLog(@"%@",data);
     [self.tableView reloadData];
     
 }

@@ -7,6 +7,7 @@
 //
 
 #import "AutoCompleteService.h"
+#import "AutoCompleteItemModel.h"
 
 @interface AutoCompleteService ()
 {
@@ -61,7 +62,14 @@
     NSError* error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:mutableData options:kNilOptions error:&error];
     NSArray* items = [dictionary objectForKey:@"items"];
-    [delegate autocompleteForTerm:searchTerm WithData:items];
+    NSMutableArray* result = [[NSMutableArray  alloc] initWithCapacity:10];
+    for (int i = 0; (i < 10) && (i < [items count]); i++)
+    {
+        AutoCompleteItemModel *receivedItem = [[AutoCompleteItemModel alloc] initItemFromArrayObj:[items objectAtIndex:i]];
+        
+        [result addObject:receivedItem];
+    }
+    [delegate autocompleteForTerm:searchTerm WithData:result];
 }
 
 
