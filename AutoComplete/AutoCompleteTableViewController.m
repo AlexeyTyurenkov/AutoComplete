@@ -9,6 +9,7 @@
 #import "AutoCompleteTableViewController.h"
 #import "AutoCompleteService.h"
 #import "AutoCompleteItemModel.h"
+#import "AutoCompletePopoverControllerViewController.h"
 
 @interface AutoCompleteTableViewController ()
 {
@@ -84,6 +85,10 @@
     [searchResults addObjectsFromArray:result];
     [self.tableView reloadData];
     
+    AutoCompletePopoverControllerViewController *popoverController = [[AutoCompletePopoverControllerViewController alloc] initWithNibName:@"AutoCompletePopoverControllerViewController" bundle:nil];
+    [popoverController.view setFrame:CGRectMake(50, 50, 200, 300)];
+    [popoverController setDataForPopoverTableView:searchResults];
+    [self.view.superview addSubview:popoverController.view];
 }
 
 
